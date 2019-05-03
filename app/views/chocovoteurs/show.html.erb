@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pseudo:</strong>
+  <%= @chocovoteur.pseudo %>
+</p>
+
+<p>
+  <strong>Vote:</strong>
+  <%= @chocovoteur.vote %>
+</p>
+
+<%= link_to 'Edit', edit_chocovoteur_path(@chocovoteur) %> |
+<%= link_to 'Back', chocovoteurs_path %>

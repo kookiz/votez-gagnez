@@ -1,0 +1,35 @@
+
+    submitChocovoteur = (data) ->
+      $('#chocovoteur-table tbody').append """
+      <tr>
+          <td>#{data.pseudo}</td>
+          <td>#{data.vote}</td>
+          <td><a href="/chocovoteurs/#{data.id}">Show</a></td>
+          <td><a href="/chocovoteurs/#{data.id}/edit">Edit</a></td>
+          <td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/chocovoteurs/#{data.id}">Delete</a></td>
+      </tr>
+      """
+      return
+    $ ->
+    updateChart = (data) ->
+      chart = Chartkick.charts['chocovoteurs'].getChartObject()
+      if data.vote == 'pain au chocolat'
+        chart.data.datasets[0].data[0]++
+        chart.update()
+      else
+        chart.data.datasets[0].data[1]++
+        chart.update()
+
+    $ ->
+      $('#add_chocovoteur').on 'ajax:success', (data) ->
+        $('#add_chocovoteur')[0].reset()
+        return
+      pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
+        cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
+        encrypted: true)
+      channel = pusher.subscribe('chocovoteur')
+      channel.bind 'new', (data) ->
+          submitChocovoteur data
+          updateChart data
+          return
+      return

@@ -1,0 +1,30 @@
+
+ <%= form_with(model: chocovoteur, remote: true, format: :json, id: 'add_chocovoteur') do |form| %>
+      <% if chocovoteur.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(chocovoteur.errors.count, "error") %> prohibited this chocovoteur from being saved:</h2>
+          <ul>
+          <% chocovoteur.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= form.label :pseudo %>
+        <%= form.text_field :pseudo, id: :chocovoteur_pseudo, class: "form-control" %>
+      </div>
+      <div class="radio_votes field">
+        <%= form.label :vote, "Faite votre choix ? " %><br />
+        <div class="choco_check" >
+        <%= form.label :vote, "pain au chocolat", :value => "true" %>
+        <%= form.radio_button :vote, 'pain au chocolat', :checked => true %>
+        <%= form.label :vote, "chocolatine", :value => "false" %>
+        <%= form.radio_button :vote, 'chocolatine'%>
+        </div>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Votez', class: "a-93 a-btn a-btn-bluegrad"%>
+      </div>
+    <% end %>
+

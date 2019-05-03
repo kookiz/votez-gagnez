@@ -1,0 +1,87 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+  p{
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  .text-home{
+    text-align: center;
+  }
+  a.paid.btn.btn-dark {
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+
+header {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  header video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover; 
+  }
+  
+  header .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  
+  @media (pointer: coarse) and (hover: none) {
+    header {
+      background: image-url('chocovschoco.jpg') black no-repeat center center scroll;
+    }
+    header video {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    #chococlip {
+    background-size: 100% 100% !important;
+    background-position: 0px 0px !important;
+    background-image: url(https://www.harryshaircenter.nl/wp-content/uploads/2016/01/csm_RedCollection_TEASER_TILE_M_Group_0d50a5f255-727x430.jpg) !important;
+    }}
+
+    .text-home{
+      padding-bottom: 120px;
+    }
+
+    .footer-agency{
+      text-align: center;
+    }

@@ -1,0 +1,21 @@
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Votez: €1.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Devien Chocovoteur"
+          data-amount="100"
+          data-label="Choisis Ton Camp"
+          data-image="http://p3.storage.canalblog.com/38/98/247621/15620739.gif"
+          data-currency="eur"
+          data-locale="auto"></script>
+<% end %>

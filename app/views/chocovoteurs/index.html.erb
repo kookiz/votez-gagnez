@@ -1,0 +1,106 @@
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-5 ">
+          <p id="notice"><%= notice %></p>
+          <h2 class="votes-count a-93 a-blue">Chocovoteurs: <%= @chococount  %></h2>
+          <table id='chocovoteur-table' class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Pseudo</th>
+                <th>Vote</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @chocovoteurs.each do |chocovoteur| %>
+                <tr>
+                  <td><%= chocovoteur.pseudo %></td>
+                  <td><%= chocovoteur.vote %></td>
+                  <td><%= chocovoteur.created_at %></td>
+                </tr>
+              <% end %>
+              
+            </tbody>
+          </table>
+          <%= paginate @chocovoteurs %>
+        </div>
+        
+        <div class="col-6">
+          <%= bar_chart [["Pain au chocolat", Chocovoteur.where(vote: "pain au chocolat").count], ["Chocolatine", Chocovoteur.where(vote: "chocolatine").count]], id:'chocovoteurs' %>
+        </div>
+        <!-- #82 -->
+        <div class="a-82">
+            <!-- Add your value in "style" and inside span tag -->
+            <div class="a-82-bar a-bg-COLORNAME" style="width:30%;"></div>
+        </div>
+      </div>
+
+
+      <div class="square">
+       <div class="row">
+        <div class='chocodiv col-11  col-sm-4'>
+          <h3 class="a-94">Pain au Chocolat</h3>
+          <div class="row stat2">
+          <div class="col-lg-3">
+            <div class="ibox">
+              <div class="ibox-content">
+                  <h5>Chocovoteurs</h5>
+                  <h2>42/20</h2>
+                  <div class="text-center">
+                      <div id="sparkline6"></div>
+                  </div>
+              </div>
+          </div>
+          </div>
+        </div>
+          
+        </div>
+        <div class='chocodiv1 col-11  col-sm-4'>
+          <h3 class="a-94">Chocovoteurs faite votre choix</h3>
+          <%= render 'form', chocovoteur: @chocovoteur %>
+        </div>
+        <div class='chocodiv1 col-11  col-sm-4'>
+          <h3 class="a-94">Chocolatine</h3>
+          <div class="row stat2">
+          <div class="col-lg-3">
+            <div class="ibox">
+              <div class="ibox-content">
+                  <h5>Votes/jour</h5>
+                  <h2>42/20</h2>
+                  <div class="text-center">
+                      <div id="sparkline5"></div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  
+    <script>
+        $(document).ready(function() {
+
+            var sparklineCharts = function(){
+
+                 $("#sparkline5").sparkline([1, 4], {
+                     type: 'pie',
+                     height: '150',
+                     sliceColors: ['#1ab394', '#f5f6fa']
+                 });
+
+                  $("#sparkline6").sparkline([5, 3], {
+                     type: 'pie',
+                     height: '150',
+                     sliceColors: ['#1ab394', '#F5F5F5']
+                 });
+            };
+
+            var sparkResize;
+
+            $(window).resize(function(e) {
+                clearTimeout(sparkResize);
+                sparkResize = setTimeout(sparklineCharts, 500);
+            });
+
+            sparklineCharts();
+
+        });
+    </script>
